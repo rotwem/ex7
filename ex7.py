@@ -62,7 +62,7 @@ def print_sequences(char_list: List[str], n: int):
     if len(char_list) == 1:
         print(char_list[0] * n)
         return
-    combinations = find_combinations(char_list, n)
+    combinations: List = find_combinations(char_list, n)
     for combo in combinations:
         print(combo)
 
@@ -72,7 +72,7 @@ def find_combinations(char_list: List[str], n: int) -> List[str]:
         for char in char_list:
             return char_list
     else:
-        combinations = []
+        combinations: List = []
         add_list = find_combinations(char_list, n - 1)
         for i in range(len(char_list)):
             for j in range(len(add_list)):
@@ -82,40 +82,19 @@ def find_combinations(char_list: List[str], n: int) -> List[str]:
 
 def print_no_repetition_sequences(char_list: List[str], n: int):
     """receives an a string of chars and prints all the potential combinations with n length with no repetitions"""
+    if n > len(char_list):
+        return
+    else:
+        _no_repetition_helper("", n, char_list)
+
+
+def _no_repetition_helper(seq: str, n: int, char_list: List[str]):
     if n == 0 or len(char_list) == 0:
-        print("")
+        print(seq)
         return
-    if n == 1:
-        for i in range(len(char_list)):
-            print(char_list[i])
-        return
+    for i in range(len(char_list)):
+        _no_repetition_helper(seq + char_list[i], n - 1, char_list[:i] + char_list[i + 1:])
 
-
-def choose_n_from_k(char_list: List[str], n: int) -> List[str]:
-    if n == 1:
-        return char_list
-    if n == 2:
-        choose_list: list = []
-        for i in range(len(char_list)):
-            append_list = choose_n_from_k(char_list.remove(char_list[i]), 1)
-            for j in range(len(append_list)):
-                choose_list.append(char_list[i] + j)
-        return char_list
-
-
-
-
-
-def permutation(char_list):
-    if len(char_list) == 1:
-        return [char_list]
-    perm_list = []
-    for char in char_list:
-        remaining_elements = [x for x in char_list if x != char]
-        z = permutation(remaining_elements)  # permutations of sublist
-        for t in z:
-            perm_list.append([char] + t)
-    return perm_list
 
 def parentheses(n):
     """"""
