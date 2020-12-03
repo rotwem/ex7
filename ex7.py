@@ -44,12 +44,20 @@ def has_divisor_smaller_than(n: int, i: int) -> bool:
 
 
 def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any):
-    pass
+    if n <= 0:
+        return
+    if n == 1:
+        hanoi.move(src, dst)
+    else:
+        play_hanoi(hanoi, n - 1, src, temp, dst)
+        hanoi.move(src, dst)
+        play_hanoi(hanoi, n - 1, temp, dst, src)
 
 
-def print_sequences(char_list, n):
+def print_sequences(char_list: List[str], n: int):
     """receives an a string of chars and prints all the potential combinations with n length with repetitions"""
     pass
+
 
 
 def print_no__repetition_sequences(char_list, n):
