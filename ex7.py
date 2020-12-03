@@ -71,25 +71,39 @@ def find_combinations(char_list: List[str], n: int) -> List[str]:
     if n == 1:
         for char in char_list:
             return char_list
-    if n == 2:
-        return find_combinations_helper(char_list, n)
-    if n > 2:
-        return find_combinations_helper(char_list, n)
-
-
-def find_combinations_helper(char_list: List[str], n: int) -> List[str]:
-    combinations = []
-    add_list = find_combinations(char_list, n - 1)
-    for i in range(len(char_list)):
-        for j in range(len(add_list)):
-            combinations.append(char_list[i] + add_list[j])
-    return combinations
-
+    else:
+        combinations = []
+        add_list = find_combinations(char_list, n - 1)
+        for i in range(len(char_list)):
+            for j in range(len(add_list)):
+                combinations.append(char_list[i] + add_list[j])
+        return combinations
 
 
 def print_no_repetition_sequences(char_list: List[str], n: int):
     """receives an a string of chars and prints all the potential combinations with n length with no repetitions"""
-    pass
+    if n == 0 or len(char_list) == 0:
+        print("")
+        return
+    if n == 1:
+        for i in range(len(char_list)):
+            print(char_list[i])
+        return
+
+
+def choose_n_from_k(char_list: List[str], n: int) -> List[str]:
+    if n == 1:
+        return char_list
+    if n == 2:
+        choose_list: list = []
+        for i in range(len(char_list)):
+            append_list = choose_n_from_k(char_list.remove(char_list[i]), 1)
+            for j in range(len(append_list)):
+                choose_list.append(char_list[i] + j)
+        return char_list
+
+
+
 
 
 def permutation(char_list):
@@ -102,7 +116,6 @@ def permutation(char_list):
         for t in z:
             perm_list.append([char] + t)
     return perm_list
-
 
 def parentheses(n):
     """"""
