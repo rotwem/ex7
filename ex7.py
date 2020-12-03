@@ -74,6 +74,35 @@ def _print_sequence_helper(chosen: List[str], char_list: List[str], ind: int, n:
     _print_sequence_helper(chosen, char_list, ind, n, start + 1, end)
 
 
+def print_sequences2(char_list: List[str], n: int):
+    if len(char_list) == 0:
+        return
+    elif len(char_list) == 1:
+        print(char_list[0] * n)
+    elif n == 1:
+        result_list = []
+        for i in range(len(char_list)):
+            result_list.append(char_list[i])
+        return result_list
+    elif n == 2:
+        result_list = []
+        add_list = print_sequences2(char_list, n - 1)
+        for i in range(len(char_list)):
+            for j in range(len(add_list)):
+                result_list.append(char_list[i] + add_list[j])
+    elif n > 2:
+        result_list = []
+        add_list = print_sequences2(char_list, -1)
+        for i in range(len(char_list)):
+            for j in range(len(add_list)):
+                result_list.append((char_list[i] + add_list[j]))
+        for i in range(len(result_list)):
+            print(result_list[i])
+
+
+print_sequences2(["a", "b", "c", "d"], 3)
+
+
 def print_no__repetition_sequences(char_list, n):
     """receives an a string of chars and prints all the potential combinations with n length with no repetitions"""
     pass
