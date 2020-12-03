@@ -1,31 +1,49 @@
+from typing import *
+
+
 # PART 1
 # can't use any kind of loops
 
 
-def print_to_n(n):
+def print_to_n(n: int):
     """receives an int and returns akk ints from 1 to n (if input under 1 prints nothing)"""
-    pass
+    if n < 1:
+        return
+    print_to_n(n - 1)
+    print(n)
 
 
-def digit_sun(n):
+def digit_sum(n: int) -> int:
     """receives a positive int and returns the sum of the ints digits (can't use strings)"""
-    pass
+    if 0 <= n < 10:
+        return n
+    return n % 10 + digit_sum(n // 10)
 
 
-def is_prime(n):
+def is_prime(n: int) -> bool:
     """receives an int and returns True\False if the number is prime"""
-    pass
+    return not has_divisor_smaller_than(n, 2)
 
 
-def _has_divisor_smaller_than(n, i):
-    """helper for is_prime(n) - cheacks if n has a devider that is smaller than i"""
-    pass
+def has_divisor_smaller_than(n: int, i: int) -> bool:
+    """helper for is_prime(n) - checks if n has a divider that is smaller than i"""
+    if n <= 2:
+        if n == 2:
+            return False
+        else:
+            return True
+    if n % i == 0:
+        return True
+    if i * i > n:
+        return False
+    return has_divisor_smaller_than(n, i + 1)
 
 
 # PART 2
 # can use loops from here
 
-def play_hanoi(hanoi, n, src, dst, temp):
+
+def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any):
     pass
 
 
