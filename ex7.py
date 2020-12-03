@@ -56,8 +56,22 @@ def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any):
 
 def print_sequences(char_list: List[str], n: int):
     """receives an a string of chars and prints all the potential combinations with n length with repetitions"""
-    pass
+    chosen: List[str] = ["0"] * n
+    end = len(char_list) - 1
+    _print_sequence_helper(chosen, char_list, 0, n, 0, end)
 
+
+def _print_sequence_helper(chosen: List[str], char_list: List[str], ind: int, n: int, start: int, end: int):
+    if ind == n:
+        for i in range(n):
+            print(chosen[i], end="")
+        print()
+        return
+    if start > end:
+        return
+    chosen[ind] = char_list[start]
+    _print_sequence_helper(chosen, char_list, ind + 1, n, start, end)
+    _print_sequence_helper(chosen, char_list, ind, n, start + 1, end)
 
 
 def print_no__repetition_sequences(char_list, n):
