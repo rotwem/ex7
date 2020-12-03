@@ -56,56 +56,52 @@ def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any):
 
 def print_sequences(char_list: List[str], n: int):
     """receives an a string of chars and prints all the potential combinations with n length with repetitions"""
-    chosen: List[str] = ["0"] * n
-    end = len(char_list) - 1
-    _print_sequence_helper(chosen, char_list, 0, n, 0, end)
-
-
-def _print_sequence_helper(chosen: List[str], char_list: List[str], ind: int, n: int, start: int, end: int):
-    if ind == n:
-        for i in range(n):
-            print(chosen[i], end="")
-        print()
+    if n == 0 or len(char_list) == 0:
+        print("")
         return
-    if start > end:
-        return
-    chosen[ind] = char_list[start]
-    _print_sequence_helper(chosen, char_list, ind + 1, n, start, end)
-    _print_sequence_helper(chosen, char_list, ind, n, start + 1, end)
-
-
-def print_sequences2(char_list: List[str], n: int):
-    if len(char_list) == 0:
-        return
-    elif len(char_list) == 1:
+    if len(char_list) == 1:
         print(char_list[0] * n)
-    elif n == 1:
-        result_list = []
-        for i in range(len(char_list)):
-            result_list.append(char_list[i])
-        return result_list
-    elif n == 2:
-        result_list = []
-        add_list = print_sequences2(char_list, n - 1)
-        for i in range(len(char_list)):
-            for j in range(len(add_list)):
-                result_list.append(char_list[i] + add_list[j])
-    elif n > 2:
-        result_list = []
-        add_list = print_sequences2(char_list, -1)
-        for i in range(len(char_list)):
-            for j in range(len(add_list)):
-                result_list.append((char_list[i] + add_list[j]))
-        for i in range(len(result_list)):
-            print(result_list[i])
+        return
+    combinations = find_combinations(char_list, n)
+    for combo in combinations:
+        print(combo)
 
 
-print_sequences2(["a", "b", "c", "d"], 3)
+def find_combinations(char_list: List[str], n: int) -> List[str]:
+    if n == 1:
+        for char in char_list:
+            return char_list
+    if n == 2:
+        return find_combinations_helper(char_list, n)
+    if n > 2:
+        return find_combinations_helper(char_list, n)
 
 
-def print_no__repetition_sequences(char_list, n):
+def find_combinations_helper(char_list: List[str], n: int) -> List[str]:
+    combinations = []
+    add_list = find_combinations(char_list, n - 1)
+    for i in range(len(char_list)):
+        for j in range(len(add_list)):
+            combinations.append(char_list[i] + add_list[j])
+    return combinations
+
+
+
+def print_no_repetition_sequences(char_list: List[str], n: int):
     """receives an a string of chars and prints all the potential combinations with n length with no repetitions"""
     pass
+
+
+def permutation(char_list):
+    if len(char_list) == 1:
+        return [char_list]
+    perm_list = []
+    for char in char_list:
+        remaining_elements = [x for x in char_list if x != char]
+        z = permutation(remaining_elements)  # permutations of sublist
+        for t in z:
+            perm_list.append([char] + t)
+    return perm_list
 
 
 def parentheses(n):
