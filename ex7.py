@@ -96,9 +96,26 @@ def _no_repetition_helper(seq: str, n: int, char_list: List[str]):
         _no_repetition_helper(seq + char_list[i], n - 1, char_list[:i] + char_list[i + 1:])
 
 
-def parentheses(n):
-    """"""
-    pass
+def parentheses(n: int) -> List[str]:
+    """receives an int and returns all str with valid couples of parentheses"""
+    if n < 0:
+        return
+    else:
+        result = _parentheses_helper("", n, 0, 0, [])
+    return result
+
+
+def _parentheses_helper(seq: str, n: int, right: int, left: int, result: List):
+    if right == n:
+        result.append(seq)
+        return result
+    if left < n:
+        _parentheses_helper(seq + "(", n, right, left + 1, result)
+    if right < left:
+        _parentheses_helper(seq + ")", n, right + 1, left, result)
+    else:
+        return result
+
 
 
 def flood_fill(image, start):
