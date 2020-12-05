@@ -5,7 +5,7 @@ from typing import *
 # can't use any kind of loops
 
 
-def print_to_n(n: int):
+def print_to_n(n: int) -> None:
     """receives an int and returns akk ints from 1 to n (if input under 1 prints nothing)"""
     if n < 1:
         return
@@ -43,7 +43,7 @@ def has_divisor_smaller_than(n: int, i: int) -> bool:
 # can use loops from here
 
 
-def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any):
+def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any) -> None:
     if n <= 0:
         return
     if n == 1:
@@ -54,7 +54,7 @@ def play_hanoi(hanoi: Any, n: int, src: Any, dst: Any, temp: Any):
         play_hanoi(hanoi, n - 1, temp, dst, src)
 
 
-def print_sequences(char_list: List[str], n: int):
+def print_sequences(char_list: List[str], n: int) -> None:
     """receives an a string of chars and prints all the potential combinations with n length with repetitions"""
     if n == 0 or len(char_list) == 0:
         print("")
@@ -62,17 +62,16 @@ def print_sequences(char_list: List[str], n: int):
     if len(char_list) == 1:
         print(char_list[0] * n)
         return
-    combinations: List = find_combinations(char_list, n)
+    combinations: List[str] = find_combinations(char_list, n)
     for combo in combinations:
         print(combo)
 
 
 def find_combinations(char_list: List[str], n: int) -> List[str]:
     if n == 1:
-        for char in char_list:
-            return char_list
+        return char_list
     else:
-        combinations: List = []
+        combinations: List[str] = []
         add_list = find_combinations(char_list, n - 1)
         for i in range(len(char_list)):
             for j in range(len(add_list)):
@@ -80,7 +79,7 @@ def find_combinations(char_list: List[str], n: int) -> List[str]:
         return combinations
 
 
-def print_no_repetition_sequences(char_list: List[str], n: int):
+def print_no_repetition_sequences(char_list: List[str], n: int) -> None:
     """receives an a string of chars and prints all the potential combinations with n length with no repetitions"""
     if n > len(char_list):
         return
@@ -88,7 +87,7 @@ def print_no_repetition_sequences(char_list: List[str], n: int):
         _no_repetition_helper("", n, char_list)
 
 
-def _no_repetition_helper(seq: str, n: int, char_list: List[str]):
+def _no_repetition_helper(seq: str, n: int, char_list: List[str]) -> None:
     if n == 0 or len(char_list) == 0:
         print(seq)
         return
@@ -96,28 +95,31 @@ def _no_repetition_helper(seq: str, n: int, char_list: List[str]):
         _no_repetition_helper(seq + char_list[i], n - 1, char_list[:i] + char_list[i + 1:])
 
 
-def parentheses(n: int) -> List[str]:
+def parentheses(n: int) -> Optional[List[str]]:
     """receives an int and returns all str with valid couples of parentheses"""
     if n < 0:
-        return
-    else:
-        result = _parentheses_helper("", n, 0, 0, [])
+        return None
+    result: List[str] = []
+    _parentheses_helper("", n, 0, 0, result)
     return result
 
 
-def _parentheses_helper(seq: str, n: int, right: int, left: int, result: List):
+def _parentheses_helper(seq: str, n: int, right: int, left: int, result: List[str]) -> None:
     if right == n:
         result.append(seq)
-        return result
     if left < n:
         _parentheses_helper(seq + "(", n, right, left + 1, result)
     if right < left:
         _parentheses_helper(seq + ")", n, right + 1, left, result)
-    else:
-        return result
 
 
-
-def flood_fill(image, start):
+def flood_fill(image: List[List[str]], start: Tuple[int, int]) -> None:
     """"""
-    pass
+    x, y = start
+    if image[x][y] == "*":
+        return
+    image[x][y] = "*"
+    flood_fill(image, (x + 1, y))  # right step
+    flood_fill(image, (x, y + 1))  # down step
+    flood_fill(image, (x - 1, y))  # left step
+    flood_fill(image, (x, y - 1))  # up step
