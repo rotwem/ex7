@@ -2,8 +2,11 @@
   <component name="FileTypeManager" version="17">
     <ignoreFiles list="*$py.class;*.hprof;*.pyc;*.pyo;*.rbc;*.yarb;*~;.DS_Store;.git;.hg;.svn;CVS;__pycache__;_svn;vssver.scc;vssver2.scc;" />
     <extensionMap>
+      <mapping pattern="2017Aץפט" type="PLAIN_TEXT" />
+      <mapping pattern="2017A.py" type="PLAIN_TEXT" />
       <mapping pattern="lesson2" type="PLAIN_TEXT" />
       <mapping pattern="code_1.py" type="PLAIN_TEXT" />
+      <mapping pattern="2017A" type="Python" />
     </extensionMap>
   </component>
 </application>
