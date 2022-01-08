@@ -11,9 +11,6 @@
       <option name="HAS_PARENS" value="true" />
     </options>
     <keywords keywords="class;do;else;field;for;function;if;let;return;var" ignore_case="true" />
-    <keywords2 />
-    <keywords3 />
-    <keywords4 />
   </highlighting>
   <extensionMap>
     <mapping ext="jack" />
