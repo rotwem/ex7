@@ -30,6 +30,10 @@
           <option name="url" value="https://github.com/rotwem/ex12.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/rotwem/ml_testing.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\rotwe\PycharmProjects" />
