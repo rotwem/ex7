@@ -1,4 +1,4 @@
-<filetype binary="false" description="Nand2Tetris Jack file" name="Jack">
+<filetype binary="false" default_extension="jack" description="Nand2Tetris Jack file" name="Jack">
   <highlighting>
     <options>
       <option name="LINE_COMMENT" value="//" />
