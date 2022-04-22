@@ -1,5 +1,7 @@
 <application>
   <component name="FindSettings">
+    <option name="localRegularExpressions" value="true" />
+    <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.xml</mask>
